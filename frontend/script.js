@@ -17,7 +17,7 @@ async function sendMessage() {
     try {
         // Coloque aqui o link gerado pelo Railway (não esqueça do /webhooks/rest/webhook no final)
         const response = await fetch(
-            "chatbotada-production.up.railway.app",
+            "https://chatbotada-production.up.railway.app/webhooks/rest/webhook",
             {
                 method: "POST",
                 headers: {
