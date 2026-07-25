@@ -15,26 +15,34 @@ async function sendMessage() {
     input.value = "";
 
     try {
-const response = await fetch(
-    "https://visit-railroad-uncle-pray.trycloudflare.com",
-    {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            sender: "usuario",
-            message: text
-        })
-    }
-);
+        // Coloque aqui o link gerado pelo Railway (não esqueça do /webhooks/rest/webhook no final)
+        const response = await fetch(
+            "chatbotada.railway.internal",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    sender: "usuario",
+                    message: text
+                })
+            }
+        );
 
         const data = await response.json();
 
         data.forEach(msg => {
-            messages.innerHTML += `
-                <p><strong>ADA:</strong> ${msg.text}</p>
-            `;
+            if (msg.text) {
+                messages.innerHTML += `
+                    <p><strong>ADA:</strong> ${msg.text}</p>
+                `;
+            }
+            if (msg.image) {
+                messages.innerHTML += `
+                    <p><strong>ADA:</strong> <br><img src="${msg.image}" style="max-width:100%; border-radius: 8px;" /></p>
+                `;
+            }
         });
 
         messages.scrollTop = messages.scrollHeight;
