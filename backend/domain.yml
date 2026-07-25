@@ -1,0 +1,87 @@
+version: "3.1"
+
+intents:
+
+  # Conversação
+  - saudacao
+  - despedida
+  - pedir_ajuda
+
+  # Emoções
+  - emocao_frustracao
+  - emocao_confusao
+  - emocao_ansiedade
+  - emocao_motivacao
+  - emocao_prazer
+  - emocao_desafio
+  - emocao_tedio
+
+  # Conteúdos
+  - duvida_variavel
+  - duvida_condicional
+  - duvida_repeticao
+  - duvida_funcao
+
+  # Exercícios
+  - pedir_exercicio
+
+responses:
+
+  utter_saudacao:
+    - text: "Olá! Eu sou a ADA. Estou aqui para ajudar você durante seus estudos de programação."
+
+  utter_despedida:
+    - text: "Até logo! Continue praticando e não desista dos desafios."
+
+  utter_ajuda:
+    - text: "Claro! Conte para mim qual é sua dúvida ou dificuldade."
+
+  utter_frustracao:
+    - text: "Entendo sua frustração. Vamos resolver esse problema juntos, passo a passo."
+
+  utter_confusao:
+    - text: "Tudo bem ficar confuso às vezes. Qual parte está gerando mais dúvidas?"
+
+  utter_motivacao:
+    - text: "Que ótimo! Continue assim. A prática é uma das melhores formas de aprender programação."
+
+slots:
+
+  emocao:
+    type: text
+    mappings:
+      - type: custom
+
+  assunto:
+    type: text
+    mappings:
+      - type: custom
+  
+  desempenho:
+    type: text
+    mappings:
+      - type: custom
+
+actions:
+
+  # Emoções
+  - action_salvar_frustracao
+  - action_salvar_confusao
+  - action_salvar_ansiedade
+  - action_salvar_motivacao
+  - action_salvar_prazer
+  - action_salvar_desafio
+  - action_salvar_tedio
+
+  # Explicações
+  - action_explicar_variavel
+  - action_explicar_condicional
+  - action_explicar_repeticao
+  - action_explicar_funcao
+
+  # Exercícios (implementaremos depois)
+  - action_exercicio
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
