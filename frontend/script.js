@@ -18,7 +18,7 @@ async function sendMessage() {
 
     try {
         const response = await fetch(
-            "[https://chatbotada-production.up.railway.app/webhooks/rest/webhook](https://chatbotada-production.up.railway.app/webhooks/rest/webhook)",
+            "https://chatbotada-production.up.railway.app/webhooks/rest/webhook",
             {
                 method: "POST",
                 headers: {
