@@ -1,7 +1,6 @@
 version: "3.1"
 
 intents:
-
   # Conversação
   - saudacao
   - despedida
@@ -26,44 +25,44 @@ intents:
   - pedir_exercicio
 
 responses:
-
   utter_saudacao:
-    - text: "Olá! Eu sou a ADA. Estou aqui para ajudar você durante seus estudos de programação."
+    - text: "Olá! Eu sou a ADA 👋\nEstou aqui para acompanhar você no aprendizado de programação. Como posso te ajudar hoje?"
 
   utter_despedida:
-    - text: "Até logo! Continue praticando e não desista dos desafios."
+    - text: "Até logo! Continue praticando — a consistência é a chave da programação. 💪"
 
   utter_ajuda:
-    - text: "Claro! Conte para mim qual é sua dúvida ou dificuldade."
+    - text: "Claro! Me conte qual é a sua dúvida ou qual conceito você gostaria de revisar agora."
 
   utter_frustracao:
-    - text: "Entendo sua frustração. Vamos resolver esse problema juntos, passo a passo."
+    - text: "Entendo a sua frustração. Vamos com calma e resolver isso juntos, um passo por vez."
 
   utter_confusao:
-    - text: "Tudo bem ficar confuso às vezes. Qual parte está gerando mais dúvidas?"
+    - text: "Não se preocupe com a confusão. Vamos organizar as ideias e simplificar isso para você."
 
   utter_motivacao:
-    - text: "Que ótimo! Continue assim. A prática é uma das melhores formas de aprender programação."
+    - text: "Que excelente disposição! Manter a motivação alta vai te levar muito longe na programação."
 
 slots:
-
   emocao:
     type: text
+    influence_conversation: true
     mappings:
       - type: custom
 
   assunto:
     type: text
+    influence_conversation: true
     mappings:
       - type: custom
-  
+
   desempenho:
     type: text
+    influence_conversation: false
     mappings:
       - type: custom
 
 actions:
-
   # Emoções
   - action_salvar_frustracao
   - action_salvar_confusao
@@ -79,7 +78,7 @@ actions:
   - action_explicar_repeticao
   - action_explicar_funcao
 
-  # Exercícios (implementaremos depois)
+  # Exercícios
   - action_exercicio
 
 session_config:

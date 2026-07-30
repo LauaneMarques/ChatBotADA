@@ -1,5 +1,4 @@
 async function sendMessage() {
-
     const input = document.getElementById("message");
     const messages = document.getElementById("messages");
 
@@ -9,15 +8,17 @@ async function sendMessage() {
 
     // Mostra a mensagem do usuário
     messages.innerHTML += `
-        <p><strong>Você:</strong> ${text}</p>
+        <div class="msg-box user-msg">
+            <p><strong>Você:</strong> ${text}</p>
+        </div>
     `;
 
     input.value = "";
+    messages.scrollTop = messages.scrollHeight;
 
     try {
-        // Coloque aqui o link gerado pelo Railway (não esqueça do /webhooks/rest/webhook no final)
         const response = await fetch(
-            "https://chatbotada-production.up.railway.app/webhooks/rest/webhook",
+            "[https://chatbotada-production.up.railway.app/webhooks/rest/webhook](https://chatbotada-production.up.railway.app/webhooks/rest/webhook)",
             {
                 method: "POST",
                 headers: {
@@ -34,13 +35,22 @@ async function sendMessage() {
 
         data.forEach(msg => {
             if (msg.text) {
+                // Renderiza o texto convertendo o Markdown para HTML limpo
+                const parsedText = typeof marked !== 'undefined' ? marked.parse(msg.text) : msg.text;
+                
                 messages.innerHTML += `
-                    <p><strong>ADA:</strong> ${msg.text}</p>
+                    <div class="msg-box ada-msg">
+                        <strong>ADA:</strong>
+                        <div class="bot-content">${parsedText}</div>
+                    </div>
                 `;
             }
             if (msg.image) {
                 messages.innerHTML += `
-                    <p><strong>ADA:</strong> <br><img src="${msg.image}" style="max-width:100%; border-radius: 8px;" /></p>
+                    <div class="msg-box ada-msg">
+                        <strong>ADA:</strong><br>
+                        <img src="${msg.image}" style="max-width:100%; border-radius: 8px; margin-top: 5px;" />
+                    </div>
                 `;
             }
         });
@@ -48,13 +58,12 @@ async function sendMessage() {
         messages.scrollTop = messages.scrollHeight;
 
     } catch (erro) {
-
         messages.innerHTML += `
-            <p><strong>Erro:</strong> Não foi possível conectar ao chatbot.</p>
+            <div class="msg-box error-msg">
+                <p><strong>Erro:</strong> Não foi possível conectar ao chatbot.</p>
+            </div>
         `;
 
         console.error(erro);
-
     }
-
 }

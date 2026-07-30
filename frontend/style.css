@@ -72,3 +72,33 @@ button{
 button:hover{
     background:#3d35c5;
 }
+
+/* Estilo para formatar o código em Java vindo da ADA */
+.bot-content pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9em;
+    margin: 8px 0;
+}
+
+.bot-content code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: #d63384;
+}
+
+.bot-content pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+.bot-content p {
+    margin: 4px 0;
+}

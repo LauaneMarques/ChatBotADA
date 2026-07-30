@@ -3,385 +3,252 @@ from rasa_sdk.events import SlotSet
 
 
 def obter_texto_emocional(emocao):
-
     if emocao == "frustracao":
-        return (
-            "Entendo que isso possa estar sendo difícil. "
-            "Vamos analisar o conceito passo a passo."
-        )
-
+        return "Sem pressa! Aprender a programar pode ser desafiador, mas vamos juntos passo a passo. 💡\n\n"
     elif emocao == "confusao":
-        return (
-            "Vamos simplificar a ideia."
-        )
-
+        return "É super normal ficar em dúvida! Vamos desmistificar esse conceito de forma bem simples. 🧩\n\n"
     elif emocao == "ansiedade":
-        return (
-            "Sem pressa. O importante é compreender um conceito de cada vez."
-        )
-
+        return "Respire fundo! Um conceito de cada vez e logo tudo fará sentido. 🧘‍♂️\n\n"
     elif emocao == "motivacao":
-        return (
-            "Excelente! Vamos avançar um pouco mais."
-        )
-
+        return "Excelente energia! Vamos aproveitar esse ritmo para evoluir ainda mais! 🚀\n\n"
     elif emocao == "prazer":
-        return (
-            "Que bom que você está gostando do aprendizado!"
-        )
-
+        return "Muito bom ver o seu entusiasmo com a programação! ✨\n\n"
     elif emocao == "desafio":
-        return (
-            "Excelente! Vamos explorar alguns detalhes extras."
-        )
-
+        return "Gosto dessa determinação! Vamos aprofundar no assunto. ⚔️\n\n"
     elif emocao == "tedio":
-        return (
-            "Vamos usar um exemplo prático para tornar isso mais interessante."
-        )
-
+        return "Hora de deixar as coisas mais dinâmicas com um exemplo bem prático! ⚡\n\n"
     return ""
-    
-class ActionSalvarFrustracao(Action):
 
+
+# ==================== EMOÇÕES ====================
+
+class ActionSalvarFrustracao(Action):
     def name(self):
         return "action_salvar_frustracao"
 
     def run(self, dispatcher, tracker, domain):
-
         dispatcher.utter_message(
-            text="Entendo sua frustração. Vamos resolver isso juntos."
+            text="Entendo sua frustração. Não se preocupe, estou aqui para te guiar!"
         )
-
         return [SlotSet("emocao", "frustracao")]
 
 
 class ActionSalvarConfusao(Action):
-
     def name(self):
         return "action_salvar_confusao"
 
     def run(self, dispatcher, tracker, domain):
-
         dispatcher.utter_message(
-            text="Tudo bem ficar confuso às vezes. Vamos identificar exatamente onde está a dúvida."
+            text="Tudo bem se sentir assim. Vamos organizar as ideias juntos!"
         )
-
         return [SlotSet("emocao", "confusao")]
 
 
 class ActionSalvarAnsiedade(Action):
-
     def name(self):
         return "action_salvar_ansiedade"
 
     def run(self, dispatcher, tracker, domain):
-
         dispatcher.utter_message(
-            text="Sem pressa. Vamos resolver um passo de cada vez."
+            text="Calma, não precisa ter pressa. Cada programador aprende no seu ritmo."
         )
-
         return [SlotSet("emocao", "ansiedade")]
 
 
 class ActionSalvarMotivacao(Action):
-
     def name(self):
         return "action_salvar_motivacao"
 
     def run(self, dispatcher, tracker, domain):
-
         dispatcher.utter_message(
-            text="Que ótimo! Sua motivação é um grande aliado no aprendizado."
+            text="Que notícia boa! Sua motivação é a melhor ferramenta para aprender."
         )
-
         return [SlotSet("emocao", "motivacao")]
 
 
 class ActionSalvarPrazer(Action):
-
     def name(self):
         return "action_salvar_prazer"
 
     def run(self, dispatcher, tracker, domain):
-
         dispatcher.utter_message(
-            text="Fico feliz que você esteja gostando da atividade!"
+            text="Que ótimo saber disso! Programar se torna muito divertido com a prática."
         )
-
         return [SlotSet("emocao", "prazer")]
 
 
 class ActionSalvarDesafio(Action):
-
     def name(self):
         return "action_salvar_desafio"
 
     def run(self, dispatcher, tracker, domain):
-
         dispatcher.utter_message(
-            text="Excelente! Encarar desafios é uma ótima forma de aprender."
+            text="Sensacional! Encarar novos desafios é o caminho mais rápido para evoluir."
         )
-
         return [SlotSet("emocao", "desafio")]
 
 
 class ActionSalvarTedio(Action):
-
     def name(self):
         return "action_salvar_tedio"
 
     def run(self, dispatcher, tracker, domain):
-
         dispatcher.utter_message(
-            text="Talvez possamos encontrar uma forma mais interessante de abordar esse conteúdo."
+            text="Entendido! Vamos direto ao ponto com algo mais prático."
         )
-
         return [SlotSet("emocao", "tedio")]
-    
 
-class ActionExplicarRepeticao(Action):
 
-    def name(self):
-        return "action_explicar_repeticao"
-
-    def run(self, dispatcher, tracker, domain):
-
-        emocao = tracker.get_slot("emocao")
-        texto_emocional = obter_texto_emocional(emocao)
-
-        explicacao = (
-            "\n\nEstruturas de repetição permitem executar um bloco de código várias vezes."
-        )
-
-        exemplo = (
-            "\n\nExemplo em Java:\n"
-            "for(int i = 0; i < 5; i++) {\n"
-            "    System.out.println(i);\n"
-            "}"
-        )
-
-        observacao = (
-            "\n\nNesse exemplo, o laço for executa o bloco de código 5 vezes, "
-            "exibindo os números de 0 a 4."
-        )
-
-        mensagem = texto_emocional + explicacao + exemplo + observacao
-
-        dispatcher.utter_message(text=mensagem)
-
-        return [SlotSet("assunto", "repeticao")]
-    
-
+# ==================== EXPLICAÇÕES DIDÁTICAS ====================
 
 class ActionExplicarVariavel(Action):
-
     def name(self):
         return "action_explicar_variavel"
 
     def run(self, dispatcher, tracker, domain):
-
         emocao = tracker.get_slot("emocao")
-        texto_emocional = obter_texto_emocional(emocao)
+        prefixo = obter_texto_emocional(emocao)
 
-        # Explicação do conceito
-        explicacao = (
-            "\n\nUma variável é um espaço utilizado para armazenar informações "
-            "durante a execução de um programa."
+        mensagem = (
+            f"{prefixo}"
+            "📦 **O que é uma Variável?**\n"
+            "Pense em uma variável como uma **caixa com uma etiqueta**. Você guarda um dado dentro dela para usar depois no seu código.\n\n"
+            "💻 **Exemplo em Java:**\n"
+            "```java\n"
+            'String nome = "Maria";  // Guarda um texto\n'
+            "int idade = 17;         // Guarda um número inteiro\n"
+            "```\n"
+            "📌 **Resumo:** A caixa `nome` guarda o texto *\"Maria\"* e a caixa `idade` guarda o valor *17*."
         )
-
-        # Exemplo em Java
-        exemplo = (
-            "\n\nExemplo em Java:\n"
-            "String nome = \"Maria\";\n"
-            "int idade = 17;"
-        )
-
-        # Observação do exemplo
-        observacao = (
-            "\n\nNesse exemplo, a variável 'nome' armazena um texto "
-            "e a variável 'idade' armazena um número inteiro."
-        )
-
-        mensagem = texto_emocional + explicacao + exemplo + observacao
 
         dispatcher.utter_message(text=mensagem)
-
         return [SlotSet("assunto", "variavel")]
-    
-class ActionExplicarCondicional(Action):
 
+
+class ActionExplicarCondicional(Action):
     def name(self):
         return "action_explicar_condicional"
 
     def run(self, dispatcher, tracker, domain):
-
         emocao = tracker.get_slot("emocao")
-        texto_emocional = obter_texto_emocional(emocao)
+        prefixo = obter_texto_emocional(emocao)
 
-        # Explicação do conceito
-        explicacao = (
-            "\n\nUma estrutura condicional permite que o programa tome decisões "
-            "com base em condições."
-        )
-
-        # Exemplo em Java
-        exemplo = (
-            "\n\nExemplo em Java:\n"
+        mensagem = (
+            f"{prefixo}"
+            "🚦 **O que são Estruturas Condicionais?**\n"
+            "Servem para o seu programa **tomar decisões**. É o famoso *SE / SENÃO*:\n"
+            "• **SE** estiver chovendo, você leva um guarda-chuva.\n"
+            "• **SENÃO**, você sai normalmente.\n\n"
+            "💻 **Exemplo em Java:**\n"
+            "```java\n"
             "int idade = 18;\n\n"
             "if (idade >= 18) {\n"
-            "    System.out.println(\"Maior de idade\");\n"
+            '    System.out.println("Maior de idade");\n'
             "} else {\n"
-            "    System.out.println(\"Menor de idade\");\n"
-            "}"
+            '    System.out.println("Menor de idade");\n'
+            "}\n"
+            "```\n"
+            "📌 **Resumo:** O computador avalia se a `idade` é maior ou igual a 18. Se for verdade, executa a primeira linha; se não, vai direto para a instrução dentro do `else`."
         )
-
-        # Observação do exemplo
-        observacao = (
-            "\n\nNesse exemplo, o programa verifica se a idade é maior ou igual a 18. "
-            "Se a condição for verdadeira, exibe 'Maior de idade'. "
-            "Caso contrário, exibe 'Menor de idade'."
-        )
-
-        mensagem = texto_emocional + explicacao + exemplo + observacao
 
         dispatcher.utter_message(text=mensagem)
-
         return [SlotSet("assunto", "condicional")]
-    
-    
-class ActionExplicarFuncao(Action):
 
+
+class ActionExplicarRepeticao(Action):
     def name(self):
-        return "action_explicar_funcao"
-    
-
-
+        return "action_explicar_repeticao"
 
     def run(self, dispatcher, tracker, domain):
-
         emocao = tracker.get_slot("emocao")
-        texto_emocional = obter_texto_emocional(emocao)
+        prefixo = obter_texto_emocional(emocao)
 
-        explicacao = (
-            "\n\nEm Java, métodos são blocos de código reutilizáveis que executam tarefas específicas."
+        mensagem = (
+            f"{prefixo}"
+            "🔄 **O que são Laços de Repetição?**\n"
+            "Eles evitam que você precise escrever a mesma linha de código várias vezes. Imagine mandar o computador dar 5 voltas numa pista de corrida!\n\n"
+            "💻 **Exemplo em Java (`for`):**\n"
+            "```java\n"
+            "for (int i = 0; i < 5; i++) {\n"
+            '    System.out.println("Volta número: " + i);\n'
+            "}\n"
+            "```\n"
+            "📌 **Resumo:** A variável `i` começa em `0` e o laço repete o código até que `i` atinja `4` (totalizando 5 execuções)."
         )
-
-        exemplo = (
-            "\n\nExemplo em Java:\n"
-            "public static void saudacao() {\n"
-            "    System.out.println(\"Olá!\");\n"
-            "}"
-        )
-
-        observacao = (
-            "\n\nNesse exemplo, o método 'saudacao' pode ser chamado sempre que quisermos exibir a mensagem 'Olá!'."
-        )
-
-        mensagem = texto_emocional + explicacao + exemplo + observacao
 
         dispatcher.utter_message(text=mensagem)
+        return [SlotSet("assunto", "repeticao")]
 
+
+class ActionExplicarFuncao(Action):
+    def name(self):
+        return "action_explicar_funcao"
+
+    def run(self, dispatcher, tracker, domain):
+        emocao = tracker.get_slot("emocao")
+        prefixo = obter_texto_emocional(emocao)
+
+        mensagem = (
+            f"{prefixo}"
+            "🛠️ **O que é um Método (Função)?**\n"
+            "É um **bloco de código reutilizável**. Em vez de reescrever uma rotina inteira, você empacota o código em um método e apenas o chama pelo nome sempre que precisar.\n\n"
+            "💻 **Exemplo em Java:**\n"
+            "```java\n"
+            "public static void saudarUsuario() {\n"
+            '    System.out.println("Olá! Seja bem-vindo.");\n'
+            "}\n"
+            "```\n"
+            "📌 **Resumo:** Chamando `saudarUsuario()` em qualquer lugar do programa, a mensagem será exibida na tela automaticamente!"
+        )
+
+        dispatcher.utter_message(text=mensagem)
         return [SlotSet("assunto", "funcao")]
-    
-    
-    
-    
-class ActionExercicio(Action):
 
+
+# ==================== EXERCÍCIOS ====================
+
+class ActionExercicio(Action):
     def name(self):
         return "action_exercicio"
 
     def run(self, dispatcher, tracker, domain):
-
         emocao = tracker.get_slot("emocao")
         assunto = tracker.get_slot("assunto")
 
         if assunto == "variavel":
-
             if emocao == "frustracao":
-                mensagem = (
-                    "Vamos começar com algo simples.\n\n"
-                    "Crie uma variável chamada nome e armazene seu nome nela."
-                )
-
+                mensagem = "✏️ **Desafio Leve:** Crie uma variável em Java do tipo `String` chamada `nome` e atribua a ela o seu próprio nome."
             elif emocao == "desafio":
-                mensagem = (
-                    "Desafio:\n\n"
-                    "Crie um cadastro contendo nome, idade e altura utilizando variáveis de tipos diferentes."
-                )
-
+                mensagem = "🔥 **Desafio Avançado:** Crie a estrutura de um cadastro contendo variáveis para armazenar `nome`, `idade`, `altura` e `possuiCnh` utilizando os tipos corretos em Java (`String`, `int`, `double`, `boolean`)."
             else:
-                mensagem = (
-                    "Exercício:\n\n"
-                    "Crie variáveis para armazenar nome, idade e cidade."
-                )
+                mensagem = "✏️ **Exercício:** Crie três variáveis em Java para armazenar seu nome, sua idade e sua cidade natal."
 
         elif assunto == "funcao":
-
             if emocao == "frustracao":
-                mensagem = (
-                    "Vamos praticar devagar.\n\n"
-                    "Crie um método chamado saudacao que exiba a mensagem 'Olá'."
-                )
-
+                mensagem = "✏️ **Desafio Leve:** Crie um método público em Java chamado `exibirSaudacao` que apenas imprima a palavra *\"Olá\"*."
             elif emocao == "desafio":
-                mensagem = (
-                    "Desafio:\n\n"
-                    "Crie um método que receba três notas e retorne a média delas."
-                )
-
+                mensagem = "🔥 **Desafio Avançado:** Crie um método em Java chamado `calcularMedia` que receba 3 notas como argumento e retorne o valor da média aritmética."
             else:
-                mensagem = (
-                    "Exercício:\n\n"
-                    "Crie um método chamado calcularSoma que receba dois números."
-                )
+                mensagem = "✏️ **Exercício:** Crie um método chamado `somarValores` que receba dois números inteiros e exiba o resultado da soma deles."
 
         elif assunto == "repeticao":
-
             if emocao == "frustracao":
-                mensagem = (
-                    "Vamos começar com algo simples.\n\n"
-                    "Utilize um laço for para exibir os números de 1 a 5."
-                )
-
+                mensagem = "✏️ **Desafio Leve:** Escreva um laço `for` em Java que mostre no console os números de 1 a 5."
             elif emocao == "desafio":
-                mensagem = (
-                    "Desafio:\n\n"
-                    "Utilize um laço for para exibir apenas os números pares de 1 a 100."
-                )
-
+                mensagem = "🔥 **Desafio Avançado:** Escreva um laço `for` que vá de 1 a 100, mas só exiba na tela os números que forem pares."
             else:
-                mensagem = (
-                    "Exercício:\n\n"
-                    "Utilize um laço for para exibir os números de 1 a 10."
-                )
+                mensagem = "✏️ **Exercício:** Escreva um laço `for` em Java que imprima a tabuada do número 2 (de 2x1 até 2x10)."
 
         elif assunto == "condicional":
-
             if emocao == "frustracao":
-                mensagem = (
-                    "Vamos praticar com um exemplo simples.\n\n"
-                    "Crie um if que verifique se uma pessoa é maior de idade."
-                )
-
+                mensagem = "✏️ **Desafio Leve:** Crie uma estrutura `if` bem simples que avalie se um número é maior que zero."
             elif emocao == "desafio":
-                mensagem = (
-                    "Desafio:\n\n"
-                    "Crie uma estrutura que classifique uma nota como A, B, C ou D."
-                )
-
+                mensagem = "🔥 **Desafio Avançado:** Crie um sistema com `if/else` encadeados que receba uma nota (de 0 a 10) e classifique o aluno como: 'Aprobado', 'Recuperação' ou 'Reprovado'."
             else:
-                mensagem = (
-                    "Exercício:\n\n"
-                    "Crie um programa que informe se um número é positivo ou negativo."
-                )
+                mensagem = "✏️ **Exercício:** Crie um programa em Java que declare uma variável de temperatura e exiba se o dia está 'Quente' (acima de 25°C) ou 'Frio'."
 
         else:
-            mensagem = (
-                "Primeiro escolha um conteúdo para estudar, como variáveis, funções, condicionais ou repetições."
-            )
+            mensagem = "🎯 Para eu te passar um exercício sob medida, escolha primeiro o assunto que quer treinar: **variáveis**, **funções**, **condicionais** ou **repetição**."
 
         dispatcher.utter_message(text=mensagem)
-
         return []
