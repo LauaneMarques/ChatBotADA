@@ -188,17 +188,26 @@ class ActionExplicarFuncao(Action):
         emocao = tracker.get_slot("emocao")
         prefixo = obter_texto_emocional(emocao)
 
+        # Junta o acolhimento + analogia + código em uma resposta só
         mensagem = (
             f"{prefixo}"
-            "🛠️ **O que é um Método (Função)?**\n"
-            "É um **bloco de código reutilizável**. Em vez de reescrever uma rotina inteira, você empacota o código em um método e apenas o chama pelo nome sempre que precisar.\n\n"
+            "🛠️ **O que é uma Função (Método)?**\n\n"
+            "Pense em uma função como uma **máquina de fazer suco**: você coloca a fruta (entrada), "
+            "ela processa e te entrega o suco pronto (resultado), sem você precisar espremer na mão toda vez!\n\n"
+            "Em Java, usamos métodos para reutilizar um bloco de código sempre que precisarmos.\n\n"
             "💻 **Exemplo em Java:**\n"
             "```java\n"
-            "public static void saudarUsuario() {\n"
-            '    System.out.println("Olá! Seja bem-vindo.");\n'
+            "public class Exemplo {\n"
+            "    // Criamos a função\n"
+            "    public static void fazerSuco(String fruta) {\n"
+            '        System.out.println("Suco de " + fruta + " pronto!");\n'
+            "    }\n\n"
+            "    public static void main(String[] args) {\n"
+            '        fazerSuco("Laranja"); // Chamamos a função\n'
+            "    }\n"
             "}\n"
             "```\n"
-            "📌 **Resumo:** Chamando `saudarUsuario()` em qualquer lugar do programa, a mensagem será exibida na tela automaticamente!"
+            "📌 **Resumo:** Chamando `fazerSuco(\"Laranja\")`, o Java executa toda a rotina interna automaticamente."
         )
 
         dispatcher.utter_message(text=mensagem)

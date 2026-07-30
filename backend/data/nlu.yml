@@ -164,15 +164,13 @@ nlu:
 
 - intent: duvida_funcao
   examples: |
-    - explique o que é uma função
-    - como funciona uma função
-    - não entendi a função
-    - explique função
-    - explique método
-    - o que é um método
-    - para que serve uma função
-    - como criar uma função
-    - como criar um método
+    - o que e uma funcao
+    - o que sao funcoes
+    - me explica funcao
+    - me explica metodo
+    - O que e um metodo em Java
+    - Nao entendi muito bem o que sao funcoes em Java, pode me explicar?
+    - Como funcionam os metodos em Java?
 
 # Exercícios (para a próxima etapa)
 
